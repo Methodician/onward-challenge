@@ -1,4 +1,5 @@
-import { Action, createReducer, on } from '@ngrx/store';
+import { createReducer, on } from '@ngrx/store';
+import { submitBucketInput } from './calculator.actions';
 
 export const calculatorFeatureKey = 'calculator';
 
@@ -14,4 +15,12 @@ export const initialState: State = {
   desiredVolume: 0,
 };
 
-export const calculatorReducer = createReducer(initialState);
+export const calculatorReducer = createReducer(
+  initialState,
+  on(submitBucketInput, (state, { bucketA, bucketB, desiredVolume }) => ({
+    ...state,
+    bucketA,
+    bucketB,
+    desiredVolume,
+  }))
+);

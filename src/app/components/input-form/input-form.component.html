@@ -1,1 +1,59 @@
-<p>input-form works!</p>
+<section class="wrapper">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title> Set your measurements </mat-card-title>
+      <mat-card-subtitle>
+        Enter the number of units for buckets A and B, and the desired number of
+        units to reach.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form class="input-form" [formGroup]="inputForm">
+        <mat-form-field appearance="outline">
+          <mat-label>Bucket A</mat-label>
+          <input matNativeControl type="number" formControlName="bucketA" />
+          <mat-error *ngIf="inputForm.get('bucketA')?.hasError('min')">
+            Bucket A must be greater than 0
+          </mat-error>
+          <mat-error *ngIf="inputForm.get('bucketA')?.hasError('max')">
+            Bucket A must be less than 100
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Bucket B</mat-label>
+          <input matNativeControl type="number" formControlName="bucketB" />
+          <mat-error *ngIf="inputForm.get('bucketB')?.hasError('min')">
+            Bucket B must be greater than 0
+          </mat-error>
+          <mat-error *ngIf="inputForm.get('bucketB')?.hasError('max')">
+            Bucket B must be less than 100
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline">
+          <mat-label>Desired Volume</mat-label>
+          <input
+            matNativeControl
+            type="number"
+            formControlName="desiredVolume"
+          />
+          <mat-error *ngIf="inputForm.get('desiredVolume')?.hasError('min')">
+            Desired volume must be greater than 0
+          </mat-error>
+          <mat-error *ngIf="inputForm.get('desiredVolume')?.hasError('max')">
+            Desired volume must be less than 100
+          </mat-error>
+        </mat-form-field>
+      </form>
+    </mat-card-content>
+    <mat-card-actions>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="onSubmit()"
+        [disabled]="inputForm.invalid"
+      >
+        Submit
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>
