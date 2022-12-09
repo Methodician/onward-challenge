@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, tap } from 'rxjs';
+import { catchError, exhaustMap, map, of, tap } from 'rxjs';
 import { CalculatorService } from '../services/calculator.service';
 import {
   calculateResults,
+  calculateResultsError,
   calculateResultsSuccess,
   resetCalculator,
   submitBucketInput,
@@ -46,9 +47,10 @@ export class CalculatorEffects {
     this.actions$.pipe(
       ofType(calculateResults),
       exhaustMap(() =>
-        this.calculatorSvc
-          .calculateOptimizedSolution$()
-          .pipe(map((steps) => calculateResultsSuccess({ steps })))
+        this.calculatorSvc.calculateOptimizedSolution$().pipe(
+          map((result) => calculateResultsSuccess({ result })),
+          catchError((error) => of(calculateResultsError({ error })))
+        )
       )
     )
   );

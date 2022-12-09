@@ -10,11 +10,11 @@
         units) by filling, dumping, or transferring between the buckets.
       </mat-card-subtitle>
     </mat-card-header>
-    <mat-card-content>
-      <section *ngIf="results$ | async as results" class="results-display">
-        <h2>{{ stepIntroText(results.length, volumes.targetVolume) }}</h2>
+    <mat-card-content *ngIf="result$ | async as result">
+      <h2>{{ stepIntroText(result, volumes.targetVolume) }}</h2>
+      <section *ngIf="result.status === 'SUCCESS'" class="results-display">
         <mat-card
-          *ngFor="let step of results"
+          *ngFor="let step of result.steps"
           [class.highlighted-card]="step.isFinalStep"
         >
           <mat-card-header>

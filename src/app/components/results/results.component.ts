@@ -1,13 +1,11 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
+import { CalculatorResult } from 'src/app/models/calculator.models';
 import {
   calculateResults,
   resetCalculator,
 } from 'src/app/ngrx/calculator.actions';
-import {
-  selectResults,
-  selectVolumes,
-} from 'src/app/ngrx/calculator.selectors';
+import { selectResult, selectVolumes } from 'src/app/ngrx/calculator.selectors';
 
 @Component({
   selector: 'app-results',
@@ -16,7 +14,7 @@ import {
 })
 export class ResultsComponent {
   volumes$ = this.store.select(selectVolumes);
-  results$ = this.store.select(selectResults);
+  result$ = this.store.select(selectResult);
 
   constructor(private store: Store) {}
 
@@ -26,10 +24,15 @@ export class ResultsComponent {
 
   onReset = () => this.store.dispatch(resetCalculator());
 
-  stepIntroText = (stepLength: number, targetVolume: number) => {
+  stepIntroText = (result: CalculatorResult, targetVolume: number) => {
+    console.log(result);
+    if (result.status === 'FAILURE') {
+      return result.message;
+    }
     if (targetVolume === 0)
       return "Since you don't want any water, there's no need to take any steps.";
-    else if (stepLength < 2) return "Sorry, we couldn't find a solution.";
+    else if (result.steps.length < 2)
+      return "Sorry, we couldn't find a solution.";
     else return 'The steps to reach the desired volume are:';
   };
 

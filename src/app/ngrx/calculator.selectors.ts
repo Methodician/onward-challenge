@@ -10,7 +10,7 @@ export const selectVolumes = createSelector(calculatorState, (state) => ({
   targetVolume: state.targetVolume,
 }));
 
-export const selectResults = createSelector(
+export const selectResult = createSelector(
   calculatorState,
-  (state) => state.results
+  (state) => state.result
 );

@@ -9,3 +9,16 @@ export type StepRow = {
   isFinalStep: boolean;
   bucketContainingTargetVolume?: 'A' | 'B' | 'Combined';
 };
+
+export type CalculatorSuccess = {
+  status: 'SUCCESS';
+  steps: StepRow[];
+};
+
+export type CalculatorError = {
+  status: 'FAILURE';
+  code: string;
+  message: string;
+};
+
+export type CalculatorResult = CalculatorSuccess | CalculatorError;

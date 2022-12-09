@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { StepRow } from '../models/calculator.models';
+import { CalculatorResult } from '../models/calculator.models';
 
 export const submitBucketInput = createAction(
   '[Calculator] Submit Bucket Input',
@@ -10,12 +10,12 @@ export const calculateResults = createAction('[Calculator] Calculate Results');
 
 export const calculateResultsSuccess = createAction(
   '[Calculator] Calculate Results Success',
-  props<{ steps: StepRow[] }>()
+  props<{ result: CalculatorResult }>()
 );
 
-export const calculateResultsFailure = createAction(
+export const calculateResultsError = createAction(
   '[Calculator] Calculate Results Failure',
-  props<{ error: string }>()
+  props<{ error: any }>()
 );
 
 export const resetCalculator = createAction('[Calculator] Reset Calculator');

@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { StepRow } from '../models/calculator.models';
+import { CalculatorResult } from '../models/calculator.models';
 import {
   calculateResultsSuccess,
   submitBucketInput,
@@ -11,7 +11,7 @@ export interface CalculatorState {
   bucketA: number;
   bucketB: number;
   targetVolume: number;
-  results?: StepRow[];
+  result?: CalculatorResult;
 }
 
 export const initialState: CalculatorState = {
@@ -28,8 +28,8 @@ export const calculatorReducer = createReducer(
     bucketB,
     targetVolume,
   })),
-  on(calculateResultsSuccess, (state, { steps }) => ({
+  on(calculateResultsSuccess, (state, { result }) => ({
     ...state,
-    results: steps,
+    result,
   }))
 );
