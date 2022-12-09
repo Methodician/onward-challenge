@@ -9,7 +9,5 @@ import { selectHeaderText } from 'src/app/ngrx/header.selectors';
 })
 export class HeaderComponent {
   headerText$ = this.store.select(selectHeaderText);
-  constructor(private store: Store) {
-    this.headerText$.subscribe(console.log);
-  }
+  constructor(private store: Store) {}
 }

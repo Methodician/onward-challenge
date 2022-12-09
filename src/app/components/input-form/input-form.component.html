@@ -34,12 +34,12 @@
           <input
             matNativeControl
             type="number"
-            formControlName="desiredVolume"
+            formControlName="targetVolume"
           />
-          <mat-error *ngIf="inputForm.get('desiredVolume')?.hasError('min')">
+          <mat-error *ngIf="inputForm.get('targetVolume')?.hasError('min')">
             Desired volume must be greater than 0
           </mat-error>
-          <mat-error *ngIf="inputForm.get('desiredVolume')?.hasError('max')">
+          <mat-error *ngIf="inputForm.get('targetVolume')?.hasError('max')">
             Desired volume must be less than 100
           </mat-error>
         </mat-form-field>

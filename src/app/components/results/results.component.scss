@@ -1,0 +1,33 @@
+.wrapper {
+  display: flex;
+  //   flex-direction: column;
+  //   align-items: center;
+  justify-content: center;
+  min-height: 100%;
+  width: 100%;
+  background-color: #f5f5f5;
+
+  .results-card {
+    max-width: 500px;
+    margin: 40px;
+
+    .results-display {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      .highlighted-chip {
+        background-color: #f7fc00d3;
+      }
+    }
+
+    .highlighted-card {
+      background-color: #d1f3ebfd;
+    }
+
+    mat-card-actions {
+      display: flex;
+      justify-content: center;
+    }
+  }
+}

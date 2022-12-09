@@ -12,7 +12,7 @@ export class InputFormComponent {
   inputForm = this.fb.nonNullable.group({
     bucketA: [0, [Validators.min(1), Validators.max(99)]],
     bucketB: [0, [Validators.min(1), Validators.max(99)]],
-    desiredVolume: [0, [Validators.min(1), Validators.max(99)]],
+    targetVolume: [0, [Validators.min(1), Validators.max(99)]],
   });
 
   constructor(private store: Store, private fb: FormBuilder) {

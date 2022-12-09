@@ -12,6 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
+import { MatChipsModule } from '@angular/material/chips';
 
 import { ActionReducerMap, StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -31,7 +32,12 @@ const reducers: ActionReducerMap<any> = {
   [headerFeatureKey]: headerReducer,
 };
 @NgModule({
-  declarations: [AppComponent, InputFormComponent, HeaderComponent, ResultsComponent],
+  declarations: [
+    AppComponent,
+    InputFormComponent,
+    HeaderComponent,
+    ResultsComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -44,6 +50,7 @@ const reducers: ActionReducerMap<any> = {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
+    MatChipsModule,
     StoreModule.forRoot(reducers, {}),
     EffectsModule.forRoot([]),
     EffectsModule.forFeature([CalculatorEffects]),

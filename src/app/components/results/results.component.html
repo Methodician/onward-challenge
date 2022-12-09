@@ -1,1 +1,72 @@
-<p>results works!</p>
+<section class="wrapper">
+  <mat-card *ngIf="volumes$ | async as volumes" class="results-card">
+    <mat-card-header>
+      <mat-card-title> Results </mat-card-title>
+      <mat-card-subtitle>
+        The goal is to measure {{ volumes.targetVolume }} units with some
+        combination of bucket A ({{ volumes.bucketA }} units) and bucket B ({{
+          volumes.bucketB
+        }}
+        units) by filling, dumping, or transferring between the buckets.
+      </mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <section *ngIf="results$ | async as results" class="results-display">
+        <h2>{{ stepIntroText(results.length, volumes.targetVolume) }}</h2>
+        <mat-card
+          *ngFor="let step of results"
+          [class.highlighted-card]="step.isFinalStep"
+        >
+          <mat-card-header>
+            <mat-card-title> {{ step.action }} </mat-card-title>
+            <mat-card-subtitle>
+              {{ step.description }}
+            </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content>
+            <strong>Current Volumes</strong>
+            <mat-chip-listbox>
+              <mat-chip
+                [class.highlighted-chip]="
+                  doesBucketContainTargetVolume(
+                    'A',
+                    step.bucketContainingTargetVolume
+                  )
+                "
+                ><strong>Bucket A:</strong> {{ step.volumeA }}</mat-chip
+              >
+              <mat-chip
+                [class.highlighted-chip]="
+                  doesBucketContainTargetVolume(
+                    'B',
+                    step.bucketContainingTargetVolume
+                  )
+                "
+                ><strong>Bucket B:</strong> {{ step.volumeB }}</mat-chip
+              >
+              <mat-chip
+                [class.highlighted-chip]="
+                  doesBucketContainTargetVolume(
+                    'Combined',
+                    step.bucketContainingTargetVolume
+                  )
+                "
+              >
+                <strong>Combined:</strong>
+                {{ step.volumeA + step.volumeB }}
+              </mat-chip>
+            </mat-chip-listbox>
+            <p *ngIf="step.isFinalStep">
+              That's it! Your desired volume is in the highlighted bucket above.
+            </p>
+          </mat-card-content>
+        </mat-card>
+      </section>
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" (click)="onReset()">
+        Reset
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</section>
