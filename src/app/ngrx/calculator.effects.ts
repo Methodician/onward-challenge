@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
-import { exhaustMap, map, of, tap } from 'rxjs';
+import { exhaustMap, map, tap } from 'rxjs';
 import { CalculatorService } from '../services/calculator.service';
 import {
   calculateResults,

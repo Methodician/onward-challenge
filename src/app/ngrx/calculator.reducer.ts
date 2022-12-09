@@ -18,9 +18,6 @@ export const initialState: CalculatorState = {
   bucketA: 0,
   bucketB: 0,
   targetVolume: 0,
-  // bucketA: 4,
-  // bucketB: 17,
-  // targetVolume: 12,
 };
 
 export const calculatorReducer = createReducer(

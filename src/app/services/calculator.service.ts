@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { map, Observable, Subject, switchMap, take } from 'rxjs';
+import { map, take } from 'rxjs';
 import { StepRow } from '../models/calculator.models';
 import { selectVolumes } from '../ngrx/calculator.selectors';
 
@@ -18,18 +18,14 @@ export class CalculatorService {
       )
     );
 
-  // Should create steps required to fill or transfer between buckets A and B to reach target volume in one of the buckets.
-  // bucket A or bucket B must be filled completely but can be emptied partially into the other bucket
+  // Should create steps required to fill or transfer between buckets A and B to reach target volume in one/both of the buckets.
+  // bucket A or bucket B must be filled completely but can be emptied partially into the other bucket based on destination volume.
   // Either bucket A or bucket B or bucket A + B must contain the targetVolume at the final step.
   calculateOptimizedSolution = (
     bucketA: number,
     bucketB: number,
     targetVolume: number
   ): StepRow[] => {
-    console.log(
-      `Calculating optimized solution for ${bucketA}, ${bucketB}, ${targetVolume}...`
-    );
-
     const maxBucketA = bucketA;
     const maxBucketB = bucketB;
     const steps: StepRow[] = [];
