@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { submitBucketInput } from 'src/app/ngrx/calculator.actions';
+import { setHeaderText } from 'src/app/ngrx/header.actions';
 
 @Component({
   selector: 'app-input-form',
@@ -15,16 +16,13 @@ export class InputFormComponent {
     targetVolume: [0, [Validators.min(1), Validators.max(99)]],
   });
 
-  constructor(private store: Store, private fb: FormBuilder) {
-    this.inputForm.valueChanges.subscribe(console.log);
+  constructor(private store: Store, private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.store.dispatch(setHeaderText({ headerText: 'Water Jug Problem' }));
   }
 
   onSubmit() {
-    console.log('submitted');
-    if (this.inputForm.invalid) {
-      return;
-    }
-
     this.store.dispatch(submitBucketInput(this.inputForm.getRawValue()));
   }
 }

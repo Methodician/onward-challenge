@@ -20,27 +20,26 @@ export class CalculatorEffects {
     private calculatorSvc: CalculatorService
   ) {}
 
-  navigateToResultsWhen$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(submitBucketInput),
-      tap(() => {
-        this.router.navigateByUrl('/results');
-      }),
-      // Note: This will lead to incorrect header text if the URL is manually
-      // changed to /results (or page refreshed) but I know a few ways to fix it.
-      // Time is valuable.
-      map(() => setHeaderText({ headerText: 'Optimized Steps' }))
-    )
+  navigateToResultsWhen$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(submitBucketInput),
+        tap(() => {
+          this.router.navigateByUrl('/results');
+        })
+      ),
+    { dispatch: false }
   );
 
-  navigateToHomeWhen$ = createEffect(() =>
-    this.actions$.pipe(
-      ofType(resetCalculator),
-      tap(() => {
-        this.router.navigateByUrl('/');
-      }),
-      map(() => setHeaderText({ headerText: 'Water Jug Problem' }))
-    )
+  navigateToHomeWhen$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(resetCalculator),
+        tap(() => {
+          this.router.navigateByUrl('/');
+        })
+      ),
+    { dispatch: false }
   );
 
   calculateOptimizedSolution$ = createEffect(() =>

@@ -12,6 +12,7 @@ const routes: Routes = [
     path: 'results',
     component: ResultsComponent,
   },
+  // TODO: add some fallback and error routes
 ];
 
 @NgModule({

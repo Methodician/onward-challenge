@@ -24,7 +24,7 @@
             </mat-card-subtitle>
           </mat-card-header>
           <mat-card-content>
-            <strong>Current Volumes</strong>
+            <h3>Current Volumes:</h3>
             <mat-chip-listbox>
               <mat-chip
                 [class.highlighted-chip]="
@@ -33,7 +33,7 @@
                     step.bucketContainingTargetVolume
                   )
                 "
-                ><strong>Bucket A:</strong> {{ step.volumeA }}</mat-chip
+                >Bucket A: <strong>{{ step.volumeA }}</strong></mat-chip
               >
               <mat-chip
                 [class.highlighted-chip]="
@@ -42,7 +42,7 @@
                     step.bucketContainingTargetVolume
                   )
                 "
-                ><strong>Bucket B:</strong> {{ step.volumeB }}</mat-chip
+                >Bucket B: <strong>{{ step.volumeB }}</strong></mat-chip
               >
               <mat-chip
                 [class.highlighted-chip]="
@@ -52,8 +52,8 @@
                   )
                 "
               >
-                <strong>Combined:</strong>
-                {{ step.volumeA + step.volumeB }}
+                Combined:
+                <strong>{{ step.volumeA + step.volumeB }}</strong>
               </mat-chip>
             </mat-chip-listbox>
             <p *ngIf="step.isFinalStep">

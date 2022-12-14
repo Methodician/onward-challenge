@@ -6,6 +6,7 @@ import {
   resetCalculator,
 } from 'src/app/ngrx/calculator.actions';
 import { selectResult, selectVolumes } from 'src/app/ngrx/calculator.selectors';
+import { setHeaderText } from 'src/app/ngrx/header.actions';
 
 @Component({
   selector: 'app-results',
@@ -20,12 +21,12 @@ export class ResultsComponent {
 
   ngOnInit(): void {
     this.store.dispatch(calculateResults());
+    this.store.dispatch(setHeaderText({ headerText: 'Optimized Steps' }));
   }
 
   onReset = () => this.store.dispatch(resetCalculator());
 
   stepIntroText = (result: CalculatorResult, targetVolume: number) => {
-    console.log(result);
     if (result.status === 'FAILURE') {
       return result.message;
     }
